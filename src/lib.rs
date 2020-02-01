@@ -268,6 +268,13 @@ impl<'a, K: Key, A: ?Sized + UnsafeAnyExt> VacantEntry<'a, K, A> {
     }
 }
 
+/// Simple Key implementation
+pub struct K<T: Any + 'static>(PhantomData<&'static T>);
+
+impl<T: Any> Key for K<T> {
+    type Value = T;
+}
+
 mod internals;
 
 #[cfg(test)]
